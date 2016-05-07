@@ -3,13 +3,16 @@
     <div class="Header item">
       <h1 class="ui header black">Course</h1>
     </div>
-    <div class="ui search right item">
-      <div class="ui icon input">
-        <input class="prompt" type="text" placeholder="Course ID..." (change)="reloadCourses({courseID : u.value})" #u >
-        <i class="search icon"></i>
+    <div class="right item">
+      <div class="ui search">
+        <div class="ui icon input">
+          <input class="prompt" type="text" placeholder="Course ID or Name..." (input)="reloadCourses({courseID : u.value})" #u >
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
       </div>
-      <div class="results"></div>
     </div>
+
 </div>
 <div class="ui divider"></div>
 <div class="ui content">

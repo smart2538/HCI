@@ -23,11 +23,10 @@ export class CoursesComponent implements OnInit {
     if(filter){
       this.courses = []
       for(var x in this._courses){
-        if((this._courses[x].id).indexOf(filter.courseID) > -1){
+        if((this._courses[x].id).indexOf(filter.courseID) > -1 || (this._courses[x].name.en).toLowerCase().indexOf(filter.courseID.toLowerCase()) > -1){
           this.courses.push(this._courses[x]);
         }
       }
-      console.log(this.courses);
     }
   }
   private  getCourses(){
