@@ -9,7 +9,9 @@ import {LoginComponent} from '../login/login.component';
 })
 
 export class NavbarComponent{
+  isLogin = true;
   constructor(private _router: Router){
+
     }
 
     isCurrentRoute(route){

@@ -1,19 +1,27 @@
-<div class="ui menu large top fixed">
+<div class="ui menu inverted top fixed">
   <div class="ui container">
-    <div class="left menu">
+    <div class="ui left menu inverted">
       <a class="item header ">
         <i class="student huge icon" style="color:"></i>
         <p class="large">Kasetsart</p>
       </a>
     </div>
-    <div class="right menu">
-      <a class="item">
-          Courses
-      </a>
-      <a class="item">
-          My Course
-      </a>
-          <button class="ui button huge item " [routerLink]="['Login']">login</button>
+    <div class="ui right menu inverted">
+      <div class="item">
+        <a *ngIf="isLogin" class="ui button inverted">
+            Courses
+        </a>
+      </div>
+      <div class="item">
+        <a *ngIf="isLogin" class="ui button inverted">
+            My Course
+        </a>
+      </div>
+      <div class="item">
+        <a *ngIf="!isLogin" class="ui button inverted" [routerLink]="['Login']">
+          login
+        </a>
+      </div>
     </div>
   </div>
 </div>
