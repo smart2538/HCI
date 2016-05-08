@@ -7,24 +7,24 @@
           Log-in to your student account
         </div>
       </h2>
-      <form class="ui large form">
+      <form class="ui large form" #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm.form)">
         <div class="ui stacked segment">
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
-              <input type="text" name="email" placeholder="E-mail address">
+              <input ngControl="userID" type="text" pattern="^[0-9]{10}$" name="email" placeholder="Student ID" required>
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="password" name="password" placeholder="Password">
+              <input ngControl="password" type="password" name="password" placeholder="Password" required>
             </div>
           </div>
-          <div class="ui fluid large black submit button">Login</div>
+          <button type="submit" class="ui fluid large black submit button">Login</button>
         </div>
 
-        <div class="ui error message"></div>
+        <div  class="ui error message"></div>
 
       </form>
 
