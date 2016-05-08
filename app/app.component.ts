@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
-import { RouteConfig, ROUTER_DIRECTIVES } from '@angular/router-deprecated';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { RouteConfig, ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
 import { Http, HTTP_PROVIDERS } from '@angular/http';
 
 import { NavbarComponent } from './share/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { CoursesComponent } from './course/courses.component';
 import { CourseDetailComponent } from './course/course.component';
+
 import {TruncatePipe} from './share/truncate';
+
+import {UserService} from './login/user.service';
 
 @RouteConfig([
   {path: '/login', name: 'Login', component: LoginComponent, },
@@ -21,4 +24,19 @@ import {TruncatePipe} from './share/truncate';
     pipes: [TruncatePipe]
 })
 
-export class AppComponent { }
+export class AppComponent implements OnInit {
+  router : Router;
+  userService : UserService;
+  constructor(router: Router, userService: UserService){
+    this.router = router;
+    this.userService = userService;
+  }
+
+  ngOnInit(){
+    console.log(this.userService.isLogin())
+    if(!this.userService.isLogin()){
+      this.router.navigate(['Login']);
+    }
+  }
+
+ }

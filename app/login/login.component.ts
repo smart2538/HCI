@@ -1,12 +1,12 @@
-import { Component, Provider, OnInit } from '@angular/core';
+import { Component, Provider, OnInit, Output, EventEmitter } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
 
 import { UserService } from './user.service';
+import { User } from './user';
 
 @Component({
   selector: "login-page",
-  templateUrl: "/app/login/template/login.component.html",
-  providers: [UserService]
+  templateUrl: "/app/login/template/login.component.html"
 })
 
 export class LoginComponent implements OnInit{
@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit{
     }
   }
   onSubmit(form){
-    this.userService.login(form.value);
+    let user = new User();
+    user.id = form.value.userID;
+    this.userService.login(user);
     if(this.userService.isLogin()){
       this.router.navigate(['Courses']);
     }

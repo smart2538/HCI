@@ -1,10 +1,12 @@
 import { Course } from '../course/course';
 
 export class User{
-  constructor(
-    public id: string,
-		public name: string,
-		public courses: Array<Course>){
-
+    public id: string;
+    public isLogin: boolean;
+		public courses: Array<Course>;
+  constructor(){
+      this.id = '';
+      this.isLogin = false;
+      this.courses = [];
   }
 }

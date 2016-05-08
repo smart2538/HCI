@@ -1,19 +1,27 @@
-import { Injectable } from '@angular/core'
+import { Injectable, Output, EventEmitter } from '@angular/core'
 import { User } from './user';
+@Injectable()
 export class UserService{
-
-  constructor(){
-  }
-
+  user = new User();
+  @Output() logIn = new EventEmitter();
   public isLogin() {
-      return localStorage.getItem('user') != null;
+      return this.user.isLogin;
   }
 
-  public login(user){
-    localStorage.setItem('user', user.id);
+  public login(user: User){
+    this.user = user;
+    this.user.isLogin = true;
+    this.logIn.next({
+          user: this.user
+        });
   }
 
   public logout(){
-    localStorage.removeItem('user');
+    this.user = new User();
+    this.logIn.next({isLogin: this.user.isLogin });
+  }
+
+  public getUser(){
+    return this.user;
   }
 }

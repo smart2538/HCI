@@ -1,4 +1,4 @@
-<div class="ui menu main inverted top fixed">
+<div (logIn)="checkStatus()" (logOut)="checkStatus()" class="ui menu main inverted top fixed">
   <div class="ui container">
     <div class="ui left menu inverted">
       <a class="item header " [routerLink]="['Courses']">
@@ -12,15 +12,22 @@
             Courses
         </a>
       </div>
-      <div class="item">
+      <!-- <div class="item">
         <a *ngIf="isLogin" class="ui button inverted">
             My Course
         </a>
-      </div>
-      <div class="item">
-        <a *ngIf="!isLogin" class="ui button inverted" [routerLink]="['Login']">
+      </div> -->
+      <div *ngIf="!isLogin" class="item">
+        <a class="ui button inverted" [routerLink]="['Login']">
           login
         </a>
+      </div>
+      <div *ngIf="isLogin" class="ui dropdown item">
+        {{user.id}}
+        <div class="menu">
+          <a class="item">Log out</a>
+        </div>
+
       </div>
     </div>
   </div>
