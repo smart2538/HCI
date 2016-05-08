@@ -11,7 +11,7 @@ export class Course {
     lecture?: number;
   };
   prereq: any[];
-  describtion: {
+  description: {
     en: string;
     th: string;
   };

@@ -10,12 +10,13 @@ import {LoginComponent} from '../login/login.component';
 
 export class NavbarComponent{
   isLogin = true;
+  router : Router;
   constructor(private _router: Router){
-
+      this.router = _router;
     }
 
     isCurrentRoute(route){
-        var instruction = this._router.generate(route);
+        var instruction = this.router.generate(route);
         return this._router.isRouteActive(instruction);
     }
 }

@@ -1,0 +1,70 @@
+<div class="ui main container " style="background-color: white" *ngIf="course">
+  <div class="" style="margin: 10px;">
+    <h1 class="ui header black dividing" style="padding-top:25px;" >
+      {{course.id}} : {{course.name.en}}
+    </h1>
+    <div class="ui divided item" >
+      <div class="content" >
+        Credit : {{course.credit.total}}({{course.credit.lecture}}-{{course.credit.lab}}-{{course.credit.self}})
+      </div>
+      <div class="content" style="margin-top:10px;">
+        <div class="description">
+          <h2 class="sub header">Course Description : </h2>
+          <div class="meta">
+            <p>
+              {{course.description.en}}
+            </p><br />
+          </div>
+        </div>
+      </div>
+      <div class="divider ui">
+
+      </div>
+      <div class="content">
+        <h2 class="ui header">Enrollment : </h2>
+        <div class="" *ngIf="!course.sections">
+            Course is not offered in this semester.
+        </div>
+        <div *ngIf="course.sections">
+          <div class="cards three ui stackable link">
+            <div class="ui card" *ngFor="let sec of course.sections">
+              <div class="content">
+                  <div class="header">
+                      <p>
+                        Section : {{sec.id}}
+                      </p>
+                  </div>
+                  <div class="meta">
+                    <p>
+                      {{sec.date}}
+                    </p>
+                  </div>
+              </div>
+              <div class="content">
+                <p>
+                  Type : {{sec.type}}
+                </p>
+                <p>
+                  Instructor : {{sec.instructor}}
+                </p>
+                <p>
+                    location : {{sec.location}}
+                </p>
+
+              </div>
+              <div class="extra content">
+                <div class="ui three buttons right">
+                  <div class="ui basic black button fluid">enroll</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+
+
+</div>
