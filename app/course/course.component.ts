@@ -11,7 +11,7 @@ import { RegisterService } from './register.service';
 @Component({
   selector: "course-detail",
   templateUrl: "app/course/template/course.component.html",
-  providers:[CoursesService, RegisterService]
+  providers: [ RegisterService]
 })
 
 export class CourseDetailComponent implements OnInit{
@@ -20,17 +20,15 @@ export class CourseDetailComponent implements OnInit{
   sections;
   @Input() isEnroll;
   user : User;
-  userService: UserService;
-  register: RegisterService;
-  param : RouteParams;
-  courseService : CoursesService;
-  constructor(param :RouteParams, coursesService: CoursesService, userService: UserService, register: RegisterService){
-    this.param = param;
-    this.courseID = this.param.get('id');
-    this.courseService = coursesService;
-    this.userService = userService;
-    this.register = register;
+  constructor(
+              private param :RouteParams,
+              private coursesService: CoursesService,
+              private userService: UserService,
+              private register: RegisterService
+            ){
     this.isEnroll = false;
+    this.courseID = this.param.get('id');
+
   }
   ngOnInit(){
     this.getCourse();
@@ -38,7 +36,6 @@ export class CourseDetailComponent implements OnInit{
     this.checkEnroll();
   }
   checkEnroll(){
-    console.log(this.isEnroll);
     this.userService.getUser().then(user =>{
       this.user = user;
       if(this.user.courses.find(res => res.id == this.courseID ) ){
@@ -52,12 +49,12 @@ export class CourseDetailComponent implements OnInit{
   }
 
   private getCourse(){
-    this.courseService.getCourse(this.courseID).subscribe(course =>{
+    this.coursesService.getCourse(this.courseID).then(course =>{
       this.course = course;
     });
   }
   private getSections(){
-    this.courseService.getSections(this.courseID).subscribe(sections =>{
+    this.coursesService.getSections(this.courseID).then(sections =>{
       this.sections = sections;
     });
   }

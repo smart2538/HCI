@@ -15,11 +15,11 @@ export class CoursesService {
 
   public getCourse(param){
     var url = "https://whsatku.github.io/skecourses/"+ param +".json";
-    return this.http.get(url).map(res => res.json());
+    return this.http.get(url).map(res => res.json()).toPromise();
   }
 
   public getSections(param){
     var url = "https://whsatku.github.io/skecourses/sections/"+ param +".json";
-    return this.http.get(url).map(res => res.json());
+    return this.http.get(url).map(res => res.json()).toPromise();
   }
 }

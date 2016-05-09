@@ -5,9 +5,6 @@
       {{course.id}} : {{course.name.en}}
     </h1>
     <div class="ui divided item" >
-      <div class="content" >
-        Credit : {{course.credit.total}}({{course.credit.lecture}}-{{course.credit.lab}}-{{course.credit.self}})
-      </div>
       <div class="content" style="margin-top:10px;">
         <div class="description">
           <h2 class="sub header">Course Description : </h2>
@@ -17,6 +14,9 @@
             </p><br />
           </div>
         </div>
+      </div>
+      <div class="content" >
+        Credit : {{course.credit.total}}({{course.credit.lecture}}-{{course.credit.lab}}-{{course.credit.self}})
       </div>
       <div class="divider ui">
 
@@ -53,11 +53,25 @@
                 </p>
 
               </div>
-              <div class="extra content">
-                <div class="ui three buttons right">
-                    <button [ngClass]="{'basic': !isEnroll, active: isEnroll}" (click)="enroll(sec.id)" class="ui button green fluid" type="button" ><i class="check icon ui"></i>Enroll</button>
-                </div>
-              </div>
+                  <button *ngIf="!isEnroll"
+                    (click)="enroll(sec.id)"
+                    class="ui attached bottom teal button fluid"
+                    type="button"
+                  >
+                    <i
+                        class="student icon">
+                    </i>
+                    Enroll
+                  </button>
+                  <button *ngIf="isEnroll"
+                    class="ui attached bottom red button fluid"
+                    type="button"
+                  >
+                    <i
+                        class="student icon">
+                    </i>
+                    withdraw
+                  </button>
             </div>
           </div>
         </div>

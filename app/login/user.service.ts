@@ -28,7 +28,6 @@ export class UserService{
     // localStorage.setItem('user', this.user.id);
     let _url = this.url + this.user.id + this.pin;
     this.getUser().then(user => {
-      console.log(user);
       this.user = user;
       this.user.isLogin = true;
       let _user = {

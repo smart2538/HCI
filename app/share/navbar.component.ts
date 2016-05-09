@@ -37,6 +37,9 @@ export class NavbarComponent implements OnInit, AfterViewInit{
     return this._router.isRouteActive(instruction);
   }
   checkStatus(){
-    this.isLogin = this.userService.isLogin();
+    this.userService.getUser().then(user =>{
+      this.user = user;
+      this.isLogin = true;
+    })
   }
 }

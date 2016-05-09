@@ -5,13 +5,15 @@ import { Observable } from 'rxjs/Observable'
 import { CoursesService } from './courses.service';
 
 import { CourseDetailComponent } from './course.component';
+import { MyCourses } from './mycourses.component';
+
 import { TruncatePipe } from '../share/truncate';
 
 declare var jQuery:any;
 @Component({
   selector: "courses-page",
   templateUrl: "/app/course/template/courses.component.html",
-  directives: [CourseDetailComponent, ROUTER_DIRECTIVES],
+  directives: [CourseDetailComponent, MyCourses, ROUTER_DIRECTIVES],
   providers:[CoursesService ],
   pipes: [TruncatePipe]
 })
@@ -20,17 +22,16 @@ declare var jQuery:any;
 export class CoursesComponent implements OnInit , AfterViewInit {
   courses = [];
   fullCorses = [];
-  elementRef: ElementRef;
-  router : Router;
 
+  constructor(
+    private coursesService: CoursesService,
+    private elementRef: ElementRef,
+    private router: Router){
 
-  constructor(private coursesService: CoursesService, elementRef: ElementRef, private _router: Router){
-    this.elementRef = elementRef;
-    this.router = _router;
   }
   isCurrentRoute(route){
       var instruction = this.router.generate(route);
-      return this._router.isRouteActive(instruction);
+      return this.router.isRouteActive(instruction);
   }
   ngOnInit()	{
     this.getCourses();
