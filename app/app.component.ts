@@ -33,7 +33,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){
-    console.log(this.userService.isLogin())
     if(!this.userService.isLogin()){
       this.router.navigate(['Login']);
     }

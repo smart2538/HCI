@@ -1,9 +1,11 @@
 import { Component, Provider, OnInit, ElementRef, AfterViewInit } from '@angular/core';
-import { CoursesService } from './courses.service';
-import { CourseDetailComponent } from './course.component';
-import { Observable } from 'rxjs/Observable'
-import { TruncatePipe } from '../share/truncate';
 import { ROUTER_DIRECTIVES, Router } from '@angular/router-deprecated';
+import { Observable } from 'rxjs/Observable'
+
+import { CoursesService } from './courses.service';
+
+import { CourseDetailComponent } from './course.component';
+import { TruncatePipe } from '../share/truncate';
 
 declare var jQuery:any;
 @Component({

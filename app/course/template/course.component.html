@@ -1,3 +1,4 @@
+
 <div class="ui main container " style="background-color: white" *ngIf="course">
   <div class="" style="margin: 10px;">
     <h1 class="ui header black dividing" style="padding-top:25px;" >
@@ -22,12 +23,12 @@
       </div>
       <div class="content">
         <h2 class="ui header">Enrollment : </h2>
-        <div class="" *ngIf="!course.sections">
+        <div class="" *ngIf="!sections">
             Course is not offered in this semester.
         </div>
-        <div *ngIf="course.sections">
+        <div *ngIf="sections">
           <div class="cards three ui stackable link">
-            <div class="ui card" *ngFor="let sec of course.sections">
+            <div class="ui card" *ngFor="let sec of sections">
               <div class="content">
                   <div class="header">
                       <p>
@@ -54,7 +55,7 @@
               </div>
               <div class="extra content">
                 <div class="ui three buttons right">
-                  <div class="ui basic black button fluid">enroll</div>
+                    <button [ngClass]="{'basic': !isEnroll, active: isEnroll}" (click)="enroll(sec.id)" class="ui button green fluid" type="button" ><i class="check icon ui"></i>Enroll</button>
                 </div>
               </div>
             </div>

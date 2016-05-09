@@ -25,8 +25,5 @@ export class LoginComponent implements OnInit{
     let user = new User();
     user.id = form.value.userID;
     this.userService.login(user);
-    if(this.userService.isLogin()){
-      this.router.navigate(['Courses']);
-    }
   }
 }
