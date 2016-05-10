@@ -6,28 +6,19 @@
         <p class="ui">Kasetsart Enrollment</p>
       </a>
     </div>
-    <div class="ui right menu inverted">
-      <div class="item">
-        <a *ngIf="isLogin" class="ui button inverted">
-            Courses
-        </a>
-      </div>
-      <!-- <div class="item">
-        <a *ngIf="isLogin" class="ui button inverted">
-            My Course
-        </a>
-      </div> -->
-      <div *ngIf="!isLogin" class="item">
-        <a class="ui button inverted" [routerLink]="['Login']">
-          login
-        </a>
-      </div>
-      <div *ngIf="isLogin" class="ui dropdown item">
-        {{user.id}}
-        <div class="menu">
-          <a class="item">Log out</a>
-        </div>
-      </div>
+    <div class="ui two icon labeled menu inverted right">
+      <a *ngIf="!isLogin()" class="item">
+        <i class="ui icon sign in"></i>
+        login
+      </a>
+      <a *ngIf="isLogin()" class="item">
+        <i class="ui icon user"></i>
+          {{user.id}}
+      </a>
+      <a (click)="logout()" *ngIf="isLogin()" class="red item">
+          <i class="ui icon sign out"></i>
+          sign out
+      </a>
     </div>
   </div>
 </div>

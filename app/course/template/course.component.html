@@ -30,16 +30,14 @@
           <div class="ui card" *ngFor="let sec of sections">
             <div class="content">
                 <div class="header">
-                  <div *ngIf="isEnroll()">
-                    <i [ngClass]="{'teal': enrollSection[sec],
-                                    'black': !(enrollSection[sec])}"
-                        class="ui right floated student icon" ></i>
-                  </div>
-                    <i *ngIf="!isEnroll()"
-                        class="ui right black floated student icon" ></i>
-                    <p>
-                      Section : {{sec.id}}
-                    </p>
+                  <i *ngIf="isEnroll()" [ngClass]="{'teal circular inverted': isSecIdEnroll(sec) && isSectypeEnroll(sec) ,
+                                  'black': isSecIdEnroll(sec) && !isSectypeEnroll(sec)}"
+                      class="ui right floated student icon" ></i>
+                  <i *ngIf="!isEnroll()"
+                      class="ui right floated student icon black" ></i>
+                  <p>
+                    Section : {{sec.id}}
+                  </p>
                 </div>
                 <div class="meta">
                   <p>

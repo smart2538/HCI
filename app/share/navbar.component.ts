@@ -13,7 +13,6 @@ declare var jQuery:any;
 })
 
 export class NavbarComponent implements OnInit, AfterViewInit{
-  isLogin: boolean;
   router: Router;
   userService: UserService;
   user: User;
@@ -27,7 +26,6 @@ export class NavbarComponent implements OnInit, AfterViewInit{
   ngOnInit(){
     this.userService.logIn.subscribe(user => {
       this.user = user.user;
-      this.isLogin = this.user.isLogin;
     });
   }
   ngAfterViewInit(){
@@ -39,7 +37,16 @@ export class NavbarComponent implements OnInit, AfterViewInit{
   checkStatus(){
     this.userService.getUser().then(user =>{
       this.user = user;
-      this.isLogin = true;
+      this.user.isLogin = true;
     })
+  }
+  isLogin(){
+    if(this.user)
+      return this.user.id != "";
+    return false;
+  }
+
+  logout(){
+    this.userService.logout();
   }
 }

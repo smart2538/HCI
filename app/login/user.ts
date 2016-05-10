@@ -5,7 +5,7 @@ export class User{
     public isLogin: boolean;
 		public courses: Array<Course>;
   constructor(){
-      this.id = '';
+      this.id = "";
       this.isLogin = false;
       this.courses = [];
   }

@@ -22,6 +22,7 @@ declare var jQuery:any;
 export class CoursesComponent implements OnInit , AfterViewInit {
   courses = [];
   fullCorses = [];
+  isLoading = false;
 
   constructor(
     private coursesService: CoursesService,
@@ -50,12 +51,14 @@ export class CoursesComponent implements OnInit , AfterViewInit {
     }
   }
   private  getCourses(){
+    this.isLoading = true;
     this.coursesService.getCourses()
       .then(courses => {
         for(var course in courses){
             this.fullCorses.push(courses[course])
         }
         this.courses = this.fullCorses.slice();
+        this.isLoading = false;
     });
 
   }
