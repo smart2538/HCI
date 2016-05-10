@@ -11,41 +11,47 @@ import { RegisterService } from './register.service';
 @Component({
   selector: "course-detail",
   templateUrl: "app/course/template/course.component.html",
-  providers: [ RegisterService]
+  providers: [RegisterService]
 })
 
 export class CourseDetailComponent implements OnInit{
   course;
   courseID;
   sections;
-  @Input() isEnroll;
+  enrollSection;
   user : User;
+  sectionIsLoading = false;
   constructor(
               private param :RouteParams,
               private coursesService: CoursesService,
               private userService: UserService,
               private register: RegisterService
             ){
-    this.isEnroll = false;
     this.courseID = this.param.get('id');
+    this.user = new User();
 
   }
   ngOnInit(){
+    this.user = new User();
     this.getCourse();
     this.getSections();
     this.checkEnroll();
   }
   checkEnroll(){
-    this.userService.getUser().then(user =>{
+    this.sectionIsLoading = true;
+    this.getUser().then(user =>{
       this.user = user;
+      this.sectionIsLoading = false;
       if(this.user.courses.find(res => res.id == this.courseID ) ){
-
-        this.isEnroll = true;
+        this.enrollSection = this.user.courses.find(res => res.id == this.courseID).section;
       }else{
-        this.isEnroll = false;
       }
     });
 
+
+  }
+  getUser(){
+    return this.userService.getUser();
   }
 
   private getCourse(){
@@ -58,11 +64,31 @@ export class CourseDetailComponent implements OnInit{
       this.sections = sections;
     });
   }
-  private enroll(secID){
-    if(!this.isEnroll){
-      this.course.section = this.sections.find(res=> res.id == secID);
-      this.register.regisCourse(this.course);
-      this.isEnroll = true;
-    }
+  private enroll(sec){
+      this.sectionIsLoading = true;
+      this.register.regisCourse(this.course, sec).then(res => {
+        this.checkEnroll();
+      });
+  }
+  private isEnroll(){
+    if(this.user.courses)
+      return this.user.courses.filter(c => c.id == this.course.id).length > 0;
+    return false;
+  }
+  private isSecIdEnroll(sec){
+    if(this.enrollSection)
+      return this.enrollSection.filter(s => s.id == sec.id ).length > 0;
+    return false;
+  }
+  private isSectypeEnroll(sec){
+    if(this.enrollSection)
+      return this.enrollSection.filter(s => s.id == sec.id && s.type == sec.type ).length > 0;
+    return false;
+  }
+  private withdraw(sec){
+    this.sectionIsLoading = true;
+    this.register.withdrawCourse(this.course, sec).then(res =>{
+      this.checkEnroll();
+    });
   }
 }

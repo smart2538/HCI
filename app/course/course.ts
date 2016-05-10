@@ -1,4 +1,4 @@
-export class Course {
+export interface Course {
   id: number;
   name: {
     en: string;
@@ -15,5 +15,6 @@ export class Course {
     en: string;
     th: string;
   };
+  section?: any[];
 
 }

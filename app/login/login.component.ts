@@ -10,6 +10,7 @@ import { User } from './user';
 })
 
 export class LoginComponent implements OnInit{
+  isLoading = false;
   userService : UserService;
   router : Router
   constructor( userService: UserService, router: Router){
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit{
     }
   }
   onSubmit(form){
+    this.isLoading = true;
     let user = new User();
     user.id = form.value.userID;
     this.userService.login(user);

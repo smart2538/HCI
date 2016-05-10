@@ -1,0 +1,36 @@
+<div class="ui main container" >
+
+  <div class="ui text menu">
+      <div class="Header item">
+        <h1 class="ui header black">My Course</h1>
+      </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="ui content">
+    <div class="ui five cards link stackable">
+      <div *ngIf="user.courses.length < 1">
+        No Course is enrolled;
+      </div>
+        <div class="ui card" *ngFor="let course of user.courses" [routerLink]="['CourseDetail', {id : course.id}]" >
+          <div class="content">
+            <div class="header">
+                <i class="ui right floated student icon teal" ></i>
+                <p>
+                  {{course.id}}
+                </p>
+                <p>
+                  {{course.name.en}}
+                </p>
+            </div>
+          </div>
+          <div class="ui bottom attached button teal ui">
+            <p *ngFor="let sec of course.section" class="ui header inverted">{{sec.id}} ({{sec.type}})</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+<div class="ui divider"></div>
