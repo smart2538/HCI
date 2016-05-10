@@ -7,11 +7,11 @@
       </a>
     </div>
     <div class="ui two icon labeled menu inverted right">
-      <a *ngIf="!isLogin()" class="item">
+      <a *ngIf="!isLogin()" class="item" [routerLink]="['Login']" >
         <i class="ui icon sign in"></i>
         login
       </a>
-      <a *ngIf="isLogin()" class="item">
+      <a *ngIf="isLogin()" class="item" [routerLink]="['Courses']">
         <i class="ui icon user"></i>
           {{user.id}}
       </a>
