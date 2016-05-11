@@ -1,0 +1,65 @@
+<div class="ui main container" >
+
+
+  <div class="ui basic modal mymodal">
+    <div class="ui fluid card">
+      <div class="content">
+        <div class="header">
+          enrolled course
+        </div>
+        <div class="sub header">
+          {{json}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="ui text menu">
+      <div class="Header item">
+        <h1 class="ui header black">My Course</h1>
+      </div>
+      <div class="right item">
+        <button (click)="showModal()" type="button" class="ui button fluid primary">show json</button>
+      </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div class="ui content">
+    <div class="ui five cards link stackable">
+      <div *ngIf="isLoading" class="ui icon message">
+        <i class="notched circle loading icon"></i>
+        <div class="content">
+          <div class="header">
+            Just one second
+          </div>
+          <p>We're fetching that content for you.</p>
+        </div>
+      </div>
+      <div *ngIf="user.courses.length < 1">
+        <h3 class="ui header">
+          No enrolled course
+        </h3>
+
+      </div>
+        <div class="ui card" *ngFor="let course of user.courses" [routerLink]="['CourseDetail', {id : course.id}]" >
+          <div class="content">
+            <div class="header">
+                <i class="ui right floated student icon teal" ></i>
+                <p>
+                  {{course.id}}
+                </p>
+                <p>
+                  {{course.name.en}}
+                </p>
+            </div>
+          </div>
+          <div class="ui bottom attached button teal ui">
+            <p *ngFor="let sec of course.section" class="ui header inverted">{{sec.id}} ({{sec.type}})</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+<div class="ui divider"></div>

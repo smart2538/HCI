@@ -1,0 +1,115 @@
+
+<div class="ui main container " *ngIf="course">
+  <div class="ui fluid card">
+    <div class="content">
+      <div class="ui header">
+        <h1 class="ui header black dividing"  >
+          {{course.id}} : {{course.name.en}}
+        </h1>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="description">
+        <h2 class="sub header">Course Description : </h2>
+        <div class="meta">
+          <p>
+            {{course.description.en}}
+          </p><br />
+            Credit : {{course.credit.total}}({{course.credit.lecture}}-{{course.credit.lab}}-{{course.credit.self}})
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <h2 class="ui header">Enrollment : </h2>
+      <div class="" *ngIf="!sections">
+          Course is not offered in this semester.
+      </div>
+      <div *ngIf="sections">
+        <div class="cards three ui stackable link">
+          <div class="ui card" *ngFor="let sec of sections">
+            <div class="content">
+                <div class="header">
+                  <i *ngIf="isEnroll()" [ngClass]="{'teal circular inverted': isSecIdEnroll(sec) && isSectypeEnroll(sec) ,
+                                  'black': isSecIdEnroll(sec) && !isSectypeEnroll(sec)}"
+                      class="ui right floated student icon" ></i>
+                  <i *ngIf="!isEnroll()"
+                      class="ui right floated student icon black" ></i>
+                  <p>
+                    Section : {{sec.id}}
+                  </p>
+                </div>
+                <div class="meta">
+                  <p>
+                    {{sec.date}}
+                  </p>
+                </div>
+            </div>
+            <div class="content">
+              <p>
+                Type : {{sec.type}}
+              </p>
+              <p>
+                Instructor : {{sec.instructor}}
+              </p>
+              <p>
+                  location : {{sec.location}}
+              </p>
+
+            </div>
+                <button *ngIf="!isEnroll()"
+                  [ngClass]="{'loading': sectionIsLoading}"
+                  (click)="enroll(sec)"
+                  class="ui attached bottom teal button fluid"
+                  type="button"
+                >
+                  <i
+                      class="student icon">
+                  </i>
+                  Enroll
+                </button>
+                <div *ngIf="isEnroll()">
+                  <button *ngIf="isSecIdEnroll(sec) && isSectypeEnroll(sec)"
+                  (click)="withdraw(sec)"
+                    [ngClass]="{'loading': sectionIsLoading}"
+                    class="ui attached bottom red button fluid"
+                    type="button"
+                  >
+                    <i
+                        class="student icon">
+                    </i>
+                    withdraw
+                  </button>
+                  <button *ngIf="isSecIdEnroll(sec) && !isSectypeEnroll(sec)"
+                    (click)="enroll(sec)"
+                    [ngClass]="{'loading': sectionIsLoading}"
+                    class="ui attached bottom teal button fluid"
+                    type="button"
+                  >
+                    <i
+                        class="student icon">
+                    </i>
+                    enroll
+                  </button>
+                  <button
+                    *ngIf="!isSecIdEnroll(sec)"
+                    [ngClass]="{'loading': sectionIsLoading}"
+                    class="ui attached bottom basic disabled red button fluid"
+                    type="button"
+                  >
+                    <i
+                        class="student icon">
+                    </i>
+                    withdraw
+                  </button>
+
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+</div>

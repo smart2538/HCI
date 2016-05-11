@@ -1,0 +1,36 @@
+<div class="pusher" style="padding-top: 100px">
+  <div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <h2 class="ui black image header">
+        <i class="ui icon student black huge"></i>
+        <div class="content">
+          Log-in to your student account
+        </div>
+      </h2>
+      <form class="ui large form" #signInForm="ngForm" (ngSubmit)="onSubmit(signInForm.form)">
+        <div class="ui stacked segment">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input ngControl="userID" type="text" pattern="^[0-9]{10}$" name="email" placeholder="10 Digit Student ID" required>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input ngControl="password" type="password" name="password" placeholder="Password : any password just worked now" required>
+            </div>
+          </div>
+          <button [ngClass]="{'loading': isLoading}" type="submit" class="ui fluid large black submit button">Login</button>
+        </div>
+
+        <div  class="ui error message"></div>
+
+      </form>
+
+      <div class="ui message">
+        New to us? <a href="#">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>

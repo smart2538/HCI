@@ -1,0 +1,24 @@
+<div (logIn)="checkStatus()" (logOut)="checkStatus()" class="ui menu main inverted top fixed">
+  <div class="ui container">
+    <div class="ui left menu inverted">
+      <a class="item header " [routerLink]="['Courses']">
+        <i class="student huge icon inverted" style="color:"></i>
+        <p class="ui">Kasetsart Enrollment</p>
+      </a>
+    </div>
+    <div class="ui two icon labeled menu inverted right">
+      <a *ngIf="!isLogin()" class="item" [routerLink]="['Login']" >
+        <i class="ui icon sign in"></i>
+        login
+      </a>
+      <a *ngIf="isLogin()" class="item" [routerLink]="['Courses']">
+        <i class="ui icon user"></i>
+          {{user.id}}
+      </a>
+      <a (click)="logout()" *ngIf="isLogin()" class="red item">
+          <i class="ui icon sign out"></i>
+          sign out
+      </a>
+    </div>
+  </div>
+</div>
