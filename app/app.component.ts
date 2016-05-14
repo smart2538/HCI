@@ -14,8 +14,7 @@ import {UserService} from './login/user.service';
 @RouteConfig([
   {path: '/login', name: 'Login', component: LoginComponent, },
   {path: '/courses', name: "Courses", component: CoursesComponent, useAsDefault: true },
-  {path: '/course/:id', name: 'CourseDetail', component: CourseDetailComponent, },
-  {path: '/*other', name: 'Other', redirectTo: ['Courses']}
+  {path: '/course/:id', name: 'CourseDetail', component: CourseDetailComponent, }
 ])
 @Component({
     selector: 'my-app',
