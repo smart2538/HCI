@@ -34,13 +34,19 @@
     <script src="systemjs.config.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" ></script>
     <script src="semantic/dist/semantic.min.js"></script>
-    <script src="node_modules/ng-semantic/bundles/ng-semantic.js"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err);  });
     </script>
   </head>
 
   <body>
-    <my-app>Loading...</my-app>
+    <my-app>
+      <div class="ui segment">
+        <div class="ui active dimmer">
+          <div class="ui text loader">Please wait for a minute, it's loading the related module.</div>
+        </div>
+        <p></p>
+      </div>
+    </my-app>
   </body>
 </html>
